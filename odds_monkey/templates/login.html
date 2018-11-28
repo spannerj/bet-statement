@@ -1,0 +1,27 @@
+{% extends "om_base.html" %} {% block content %}
+
+<div class="container">
+    <br>
+    <div class="row">
+        <div class="col-sm-4"></div>
+        <div class="col-sm-4">
+            <h1>Please login:</h1>
+            <br>
+            <form action="" method="post" class="form-signin">
+                <input type="text" class="form-control" placeholder="Username" name="username" value="{{request.form.username }}">
+                <input type="password" class="form-control" placeholder="Password" name="password" value="{{request.form.password }}">
+                <br>
+                <input class="btn btn-lg btn-primary btn-block" type="submit" value="Login">
+            </form>
+            {% if error %}
+            <br>
+            <div class="alert alert-danger" id="message">
+                <strong>Error:</strong> {{ error }}
+            </div>
+            {% endif %}
+        </div>
+        <div class="col-sm-4"></div>
+    </div>
+</div>
+
+{% endblock %}

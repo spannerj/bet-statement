@@ -1,0 +1,93 @@
+{% extends "om_base.html" %} {% block content %}
+
+{% with messages = get_flashed_messages(category_filter=["success"]) %}
+{% if messages %}
+{% for message in messages %}
+<div class="alert alert-success" id="message">
+    <strong>Success:</strong> {{ message }}
+</div>
+{% endfor %}
+{% endif %}
+{% endwith %}
+<div class="container">
+    <br>
+    <div class="row">
+        <div class="col-1"></div>
+
+        <div class="col-4">
+            <table class="table table-condensed table-bordered table-sm">
+                <thead class="thead-light">
+                    <tr>
+                        <th class="text-center" colspan="3">Monthly Profit</th>
+                    </tr>
+                    <tr>
+                        <th scope="col">Year</th>
+                        <th scope="col">Month</th>
+                        <th class="text-right" scope="col">Profit</th>
+                    </tr>
+                </thead>
+                {% for result in results %}
+                <tr>
+                    <td>{{ result.year }}</td>
+                    <td>{{ result.month }}</td>
+                    <td class="text-right">£{{ result.profit }}</td>
+                </tr>
+                {% endfor %}
+
+                <tr>
+                    <td>-</td>
+                    <td>Starting Balance</td>
+                    <td class="text-right">£{{ "{0:,.2f}".format(opening_balance) }}</td>
+                </tr>
+            </table>
+        </div>
+
+        <div class="col-3">
+            <table class="table table-condensed table-bordered table-sm">
+                <thead class="thead-light">
+                    <tr>
+                        <th class="text-center" colspan="3">Money Received</th>
+                    </tr>
+                    <tr>
+                        <th scope="col">Date</th>
+                        <th class="text-right" scope="col">Amount</th>
+                    </tr>
+                </thead>
+                
+                {% for payment in payments %}
+                <tr>
+                    <td>{{ payment.payment_date.strftime("%d %b '%y") }}</td>
+                    <td class="text-right">£{{ "{0:,.2f}".format(payment.amount) }}</td>
+                </tr>
+                {% endfor %}
+
+            </table>
+        </div>
+
+
+        <div class="col-3">
+            <table class="table table-condensed table-bordered table-sm">
+                <thead class="thead-light">
+                    <tr>
+                        <th class="text-center" colspan="2">Totals</th>
+                    </tr>
+                </thead>
+                
+                {% for k, v in totals.items() %}
+                <tr>
+                    <td>{{ k }}</td>
+                    {% if k == 'Money Owed' %}
+                        <td class="text-right table-success">£{{ v }}</td>
+                    {% else %}
+                        <td class="text-right">£{{ v }}</td>
+                    {% endif %}
+                </tr>
+                {% endfor %}
+
+            </table>
+        </div>
+
+        <div class="col"></div>
+    </div>
+</div>
+{% endblock %}

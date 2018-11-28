@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Statement</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>
+    <script src="https://use.fontawesome.com/a39d7e21a9.js"></script>
+
+    <!-- Special version of Bootstrap that only affects content wrapped in .bootstrap-iso -->
+    <link rel="stylesheet" href="https://formden.com/static/cdn/bootstrap-iso.css" />
+    <link rel="shortcut icon" type="image/x-icon" href="static/favicon.ico">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script>
+        setTimeout(function () {
+            $('#message').fadeOut('fast');
+        }, 5000); // <-- time in milliseconds
+    </script>
+</head>
+
+<body>
+
+    <nav class="navbar sticky-top navbar-expand-lg navbar-dark bg-primary">
+        {% if user is defined %}
+        <a class="navbar-brand" href="/statement">{{ user.full_name }} Statement</a>
+        {% else %}
+        <a class="navbar-brand" href="/statement">Statement</a>
+        {% endif %}
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor02" aria-controls="navbarColor02"
+            aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarColor02">
+            <ul class="navbar-nav mr-auto">
+                <!-- <li class="nav-item">
+                    <a class="nav-link" href="/payments">Payments
+                        <span class="sr-only">(current)</span>
+                    </a>
+                </li> -->
+            </ul>
+        </div>
+        {% if current_user.is_authenticated %}
+        <div class="pull-right">
+                <ul class="nav navbar-nav">
+                        <li class="nav-item">
+                                <a class="nav-link" href="/logout">Logout</a>
+                            </li>
+                </ul>     
+            </div>
+        {% endif %}
+    </nav>
+
+    {% block content %}{% endblock %}
+
+    <script>
+        $(document).ready(function () {
+            // -----------------------------------------------------------------------
+            $.each($('.navbar').find('li'), function () {
+                $(this).toggleClass('active',
+                    window.location.pathname.indexOf($(this).find('a').attr('href')) > -1);
+            });
+            // -----------------------------------------------------------------------
+        });
+    </script>
+</body>
+
+</html>
