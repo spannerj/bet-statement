@@ -1,12 +1,14 @@
 from flask import Flask, g, request
 import uuid
 import requests
+import os
 from flask_basicauth import BasicAuth
 from flask_login import LoginManager
 
 app = Flask(__name__)
 
 app.config.from_pyfile("config.py")
+app.secret_key = os.urandom(12)
 basic_auth = BasicAuth(app)
 login = LoginManager(app)
 login.login_view = 'index.login'
