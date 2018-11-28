@@ -8,6 +8,7 @@ alembic==1.0.3            # via flask-migrate
 certifi==2018.10.15       # via requests
 chardet==3.0.4            # via requests
 click==7.0                # via flask
+flask-basicauth==0.2.0
 flask-logconfig==0.4.2
 flask-migrate==2.0.4
 flask-negotiate==0.1.0
