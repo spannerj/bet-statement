@@ -1,1 +1,1 @@
-web: gunicorn manage:manager.app
+web: gunicorn -w 1 manage:manager.app

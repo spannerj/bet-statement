@@ -4,7 +4,7 @@ run:
 	python3 manage.py runserver 
 
 run2:
-	gunicorn -w 4 manage:manager.app
+	gunicorn -w 1 manage:manager.app
 
 flake8:
 	flake8
