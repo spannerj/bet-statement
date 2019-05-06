@@ -37,6 +37,10 @@ class Month:
         self.profit = profit
 
 
+@index.route("/scores", methods=['GET'])
+def scores():
+    return 'scores'
+
 @index.route("/statement", methods=['GET'])
 @login_required
 def user_page():
