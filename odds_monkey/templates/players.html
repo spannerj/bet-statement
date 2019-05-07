@@ -25,15 +25,35 @@
                         <td><b>T6</b></td>
                         <td><b>G6</b></td>
                         <td><b>PPG6</b></td>
-                        <td>PPM</td>
-                        <td>PPM6</td>
-                        <td>PMG</td>
-                        {%for i in range(completed_weeks, 0, -1)%} 
-                            <td><b>{{ loop.index}}</b></td>
+                        <td><b>PPM</b></td>
+                        <td><b>PPM6</b></td>
+                        <td><b>PMG</b></td>
+                        {%for week in range(max_week, 0, -1)%} 
+                            <td><b>{{ week }}</b></td>
                         {%endfor%}
                     </tr>
                 </thead>
-                <tr></tr>
+                {%for player in players%}
+                    <tr>
+                        <td>{{player.id}}</td>
+                        <td>{{player.name}}</td>
+                        <td>{{player.club}}</td>
+                        <td>{{player.value}}</td>
+                        <td>{{player.total}}</td>
+                        <td>{{player.games}}</td>
+                        <td>{{player.ppg}}</td>
+                        <td>{{player.t6}}</td>
+                        <td>{{player.g6}}</td>
+                        <td>{{player.ppg6}}</td>
+                        <td>{{player.ppm}}</td>
+                        <td>{{player.ppm6}}</td>
+                        <td>{{player.ppmg}}</td>
+                        {%for week in player.weeks | reverse%} 
+                            <td>{{ week }}</td>
+                        {%endfor%} 
+                    </tr>
+                {%endfor%}
+                
             </table>
         </div>
     </div>

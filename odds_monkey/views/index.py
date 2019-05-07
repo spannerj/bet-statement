@@ -4,7 +4,7 @@ from odds_monkey.views.queries import getstatement, getpayments, getopeningbalan
 import calendar
 from flask_login import login_user, logout_user, login_required
 import flask_login
-import subprocess
+import requests
 
 # This is the blueprint object that gets registered into the app in blueprints.py.
 index = Blueprint('index', __name__)
@@ -40,9 +40,22 @@ class Month:
 
 @index.route("/scores", methods=['GET'])
 def scores():
+    url = 'https://fantasyfootball.telegraph.co.uk/premier-league/json/fixtures/all'
+    response = requests.get(url)
+    fixtures_dict = {}
+    fixtures_dict = response.json()
     players = getplayers()
-    completed_weeks = 38
-    return render_template('players.html', **locals())
+
+    players_json = json.loads(players)
+
+    latest_week = 50
+    for fixture in fixtures_dict:
+        if fixture['RESULT'] == 'X':
+            if int(fixture['WEEK']) < latest_week:
+                latest_week = int(fixture['WEEK'])
+    max_week = latest_week - 1
+ 
+    return render_template('players.html', players=players_json, max_week=max_week)
 
 
 @index.route("/statement", methods=['GET'])
