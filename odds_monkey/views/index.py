@@ -1,9 +1,10 @@
 from flask import flash, Blueprint, render_template, redirect, url_for, request
 import json
-from odds_monkey.views.queries import getstatement, getpayments, getopeningbalance, getuser
+from odds_monkey.views.queries import getstatement, getpayments, getopeningbalance, getuser, getplayers
 import calendar
 from flask_login import login_user, logout_user, login_required
 import flask_login
+import subprocess
 
 # This is the blueprint object that gets registered into the app in blueprints.py.
 index = Blueprint('index', __name__)
@@ -39,7 +40,10 @@ class Month:
 
 @index.route("/scores", methods=['GET'])
 def scores():
-    return 'scores'
+    players = getplayers()
+    completed_weeks = 38
+    return render_template('players.html', **locals())
+
 
 @index.route("/statement", methods=['GET'])
 @login_required

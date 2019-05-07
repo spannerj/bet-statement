@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Players</title>
+</head>
+
+<body>
+
+<div class="container">
+    <br>
+    <div class="row">
+
+        <div class="col-4">
+            <table class="table table-condensed table-bordered table-sm">
+                <thead class="thead-light">
+                    <tr>
+                        <td><b>Key</b></td>
+                        <td><b>Name</b></td>
+                        <td><b>Club</b></td>
+                        <td><b>Val</b></td>
+                        <td><b>Tot</b></td>
+                        <td><b>G</b></td>
+                        <td><b>PPG</b></td>
+                        <td><b>T6</b></td>
+                        <td><b>G6</b></td>
+                        <td><b>PPG6</b></td>
+                        <td>PPM</td>
+                        <td>PPM6</td>
+                        <td>PMG</td>
+                        {%for i in range(completed_weeks, 0, -1)%} 
+                            <td><b>{{ loop.index}}</b></td>
+                        {%endfor%}
+                    </tr>
+                </thead>
+                <tr></tr>
+            </table>
+        </div>
+    </div>
+</div>
+
+</body>
+
+</html>

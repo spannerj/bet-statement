@@ -1,5 +1,11 @@
-from odds_monkey.models import Statement, Payment, User
+from odds_monkey.models import Statement, Payment, User, Player
 import json
+
+
+def getplayers():
+    """Get Players."""
+    results = Player.query.first()
+    return json.dumps(results.players, separators=(',', ':'), sort_keys=False)
 
 
 def getstatement():

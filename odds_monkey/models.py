@@ -11,6 +11,13 @@ class Statement(db.Model):
     statement = db.Column(JSON)
 
 
+class Player(db.Model):
+    __tablename__ = 'players'
+
+    id = db.Column(db.Integer, primary_key=True)
+    players = db.Column(JSON)
+
+
 class User(UserMixin, db.Model):
     """"""
     __tablename__ = "users"
