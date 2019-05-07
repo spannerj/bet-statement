@@ -3,6 +3,7 @@
 import requests
 import time
 import pprint
+from tqdm import tqdm
 start = time.time()
 
 
@@ -13,8 +14,7 @@ def safe_div(x, y):
         ret = 0
 
     return ret
-
-cnt = 0
+    
 
 # find last completed week
 url = 'https://fantasyfootball.telegraph.co.uk/premier-league/json/fixtures/all'
@@ -35,11 +35,10 @@ players_dict = {}
 players_dict = response.json()
 
 all_players = []
-for player in players_dict['playerstats']:
+for player in tqdm(players_dict['playerstats']):
     # if player['PLAYERID'] != '3286':
     #     continue
-    cnt += 1
-    print(str(cnt), end='\r')
+
     # for each player get scores
     url = 'https://fantasyfootball.telegraph.co.uk/premier-league/json/playerstats/player/'
     response = requests.get(url)
@@ -92,14 +91,9 @@ for player in players_dict['playerstats']:
         print(traceback.format_exc())
         print(e)
 
-        pprint.pprint(player)
-        pprint.pprint(new_player)
-        pprint.pprint(score)
-
-pprint.pprint(all_players)
 import json
 with open('result.json', 'w') as fp:
     json.dump(all_players, fp)
-print(cnt)
+
 end = time.time()
 print(end - start)
