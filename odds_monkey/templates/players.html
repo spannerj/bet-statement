@@ -28,6 +28,10 @@
                         <td><b>PPM</b></td>
                         <td><b>PPM6</b></td>
                         <td><b>PMG</b></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
                         {%for week in range(max_week, 0, -1)%} 
                             <td><b>{{ week }}</b></td>
                         {%endfor%}
@@ -48,6 +52,10 @@
                         <td>{{player.ppm}}</td>
                         <td>{{player.ppm6}}</td>
                         <td>{{player.ppmg}}</td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
                         {%for week in player.weeks | reverse%} 
                             <td>{{ week }}</td>
                         {%endfor%} 
