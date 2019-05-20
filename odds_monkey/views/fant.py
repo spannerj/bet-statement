@@ -21,7 +21,7 @@ url = 'https://fantasyfootball.telegraph.co.uk/premier-league/json/fixtures/all'
 response = requests.get(url)
 fixtures_dict = {}
 fixtures_dict = response.json()
-latest_week = 50
+latest_week = 42
 for fixture in fixtures_dict:
     if fixture['RESULT'] == 'X':
         if int(fixture['WEEK']) < latest_week:

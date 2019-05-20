@@ -48,7 +48,7 @@ def scores():
 
     players_json = json.loads(players)
 
-    latest_week = 50
+    latest_week = 42
     for fixture in fixtures_dict:
         if fixture['RESULT'] == 'X':
             if int(fixture['WEEK']) < latest_week:
