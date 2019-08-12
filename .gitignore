@@ -284,5 +284,6 @@ $RECYCLE.BIN/
 
 env_vars
 envvar
+env
 
 # End of https://www.gitignore.io/api/osx,windows,linux,jetbrains,python,virtualenv,visualstudiocode,sublimetext,vagrant

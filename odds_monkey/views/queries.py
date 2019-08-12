@@ -1,10 +1,11 @@
 from odds_monkey.models import Statement, Payment, User, Player
 import json
+from sqlalchemy.sql import desc
 
 
 def getplayers():
     """Get Players."""
-    results = Player.query.first()
+    results = Player.query.with_entities(Player.players).order_by(desc(Player.created_at)).limit(1).first()
     return json.dumps(results.players, separators=(',', ':'), sort_keys=False)
 
 

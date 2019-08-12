@@ -2,6 +2,7 @@ from odds_monkey.extensions import db
 from sqlalchemy.dialects.postgresql import JSON
 from flask_login import UserMixin
 from odds_monkey.app import login
+from datetime import datetime
 
 
 class Statement(db.Model):
@@ -16,6 +17,9 @@ class Player(db.Model):
 
     id = db.Column(db.Integer, primary_key=True)
     players = db.Column(JSON)
+    created_at = db.Column(db.DateTime, index=True, default=datetime.utcnow)
+    last_week = db.Column(db.Integer)
+    current_week = db.Column(db.Integer)
 
 
 class User(UserMixin, db.Model):
