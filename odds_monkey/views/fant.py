@@ -18,7 +18,7 @@ def safe_div(x, y):
 
 # find last completed week
 url = 'https://fantasyfootball.telegraph.co.uk/premier-league/json/fixtures/all'
-response = requests.get(url)
+response = requests.get(url, verify=False)
 fixtures_dict = {}
 fixtures_dict = response.json()
 latest_week = 42
@@ -30,7 +30,7 @@ last_completed_week = latest_week - 1
 print('last completed week is ' + str(last_completed_week))
 # get all players
 url = 'https://fantasyfootball.telegraph.co.uk/premier-league/json/getstatsjson'
-response = requests.get(url)
+response = requests.get(url, verify=False)
 players_dict = {}
 players_dict = response.json()
 
@@ -41,7 +41,7 @@ for player in tqdm(players_dict['playerstats']):
 
     # for each player get scores
     url = 'https://fantasyfootball.telegraph.co.uk/premier-league/json/playerstats/player/'
-    response = requests.get(url)
+    response = requests.get(url, verify=False)
     response = requests.get(url + player['PLAYERID'])
     scores_dict = {}
     scores_dict = response.json()

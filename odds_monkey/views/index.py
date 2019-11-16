@@ -41,7 +41,7 @@ class Month:
 @index.route("/scores", methods=['GET'])
 def scores():
     url = 'https://fantasyfootball.telegraph.co.uk/premier-league/json/fixtures/all'
-    response = requests.get(url)
+    response = requests.get(url, verify=False)
     fixtures_dict = {}
     fixtures_dict = response.json()
     players = getplayers()
